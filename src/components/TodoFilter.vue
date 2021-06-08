@@ -4,9 +4,9 @@
     <span
       class="filter"
       :class="{ active: selected === filter.value }"
-      v-for="(filter, index) in filters"
+      v-for="filter in filters"
       :key="filter.value"
-      @click="changeFilterHandler(filter.value, index)"
+      @click="changeFilterHandler(filter.value)"
     >
       {{ filter.label }}
     </span>
@@ -14,47 +14,47 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue'
 export default {
   props: {
     selected: {
       type: String,
-      default: "all",
+      default: 'all',
     },
   },
   setup(props, context) {
     const filters = ref([
       {
-        label: "全部",
-        value: "all",
+        label: '全部',
+        value: 'all',
         active: true,
       },
       {
-        label: "已完成",
-        value: "done",
+        label: '已完成',
+        value: 'done',
         active: false,
       },
       {
-        label: "未完成",
-        value: "todo",
+        label: '未完成',
+        value: 'todo',
         active: false,
       },
-    ]);
+    ])
 
-    const changeFilterHandler = (filter, index) => {
+    const changeFilterHandler = filter => {
       // filters.value.forEach((ele) => {
       //   ele.active = false;
       // });
       // filters.value[index].active = true;
 
-      context.emit("changeFilterHandler", filter);
-    };
+      context.emit('changeFilterHandler', filter)
+    }
     return {
       filters,
       changeFilterHandler,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

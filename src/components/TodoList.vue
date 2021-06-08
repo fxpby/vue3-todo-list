@@ -11,28 +11,24 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import TodoListItem from "./TodoListItem.vue";
+import TodoListItem from './TodoListItem.vue'
 export default {
   components: {
     TodoListItem,
   },
-  props: {
-    todosArr: {
-      type: [Object, Array, Proxy],
-      default: [],
-    },
-  },
-  setup(props, context) {
-    console.log(props.todosArr);
+  props: ['todosArr'],
+  setup(props) {
+    console.log(typeof props.todosArr)
+    console.log(props.todosArr)
+
     const changeStateHandler = (e, todo) => {
-      todo.completed = e.target.checked;
-    };
+      todo.completed = e.target.checked
+    }
     return {
       changeStateHandler,
-    };
+    }
   },
-};
+}
 </script>
 <style lang="less" scoped>
 .list-item {
